@@ -6,3 +6,7 @@ build
 *.egg-info
 .token
 .session.json
+test.py
+.idea
+venv
+__pycache__

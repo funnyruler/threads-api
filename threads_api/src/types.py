@@ -1,6 +1,7 @@
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel, Field
 
+
 class FriendshipStatus(BaseModel):
     following: Optional[bool] = None
     followed_by: Optional[bool] = None
@@ -16,15 +17,18 @@ class FriendshipStatus(BaseModel):
     is_eligible_to_subscribe: Optional[bool] = None
     text_post_app_pre_following: bool = None
 
+
 class FriendData(BaseModel):
     friendship_status: Optional[FriendshipStatus] = None
     previous_following: Optional[bool] = None
     status: Optional[str] = None
 
+
 class HdProfilePicInfo(BaseModel):
     url: str = None
     width: int = None
     height: int = None
+
 
 class User(BaseModel):
     has_anonymous_profile_picture: bool = None
@@ -32,7 +36,7 @@ class User(BaseModel):
     media_count: int = None
     following_count: int = None
     following_tag_count: int = None
-    fbid_v2: str = None
+    fbid_v2: int = None
     has_onboarded_to_text_post_app: bool = None
     show_text_post_app_badge: bool = None
     text_post_app_joiner_number: int = None
@@ -122,19 +126,24 @@ class User(BaseModel):
     feed_post_reshare_disabled: Optional[bool] = None
     show_account_transparency_details: Optional[bool] = None
 
+
 class UsersList(BaseModel):
     users: List[User] = None
+
 
 class ImageVersion(BaseModel):
     url: str = None
 
+
 class CarouselMedia(BaseModel):
     image_versions2: Dict[str, List[ImageVersion]] = None
+
 
 class VideoVersion(BaseModel):
     type: Optional[int] = None
     url: Optional[str] = None
-    _typename: Optional[str] = Field(None, alias="__typename")
+    typename: Optional[str] = Field(None, alias="__typename")
+
 
 class Caption(BaseModel):
     pk: Optional[str] = None
@@ -154,6 +163,7 @@ class Caption(BaseModel):
     media_id: Optional[int] = None
     private_reply_status: Optional[int] = None
 
+
 class ShareInfo(BaseModel):
     can_repost: Optional[bool] = None
     is_reposted_by_viewer: Optional[bool] = None
@@ -161,6 +171,7 @@ class ShareInfo(BaseModel):
     can_quote_post: Optional[bool] = None
     quoted_post: Optional[dict] = None
     reposted_post: Optional[dict] = None
+
 
 class TextPostAppInfo(BaseModel):
     is_post_unavailable: Optional[bool] = None
@@ -175,6 +186,7 @@ class TextPostAppInfo(BaseModel):
     hush_info: Optional[dict] = None
     share_info: Optional[ShareInfo] = None
 
+
 class VideoVersions(BaseModel):
     type: Optional[int] = None
     width: Optional[int] = None
@@ -182,14 +194,17 @@ class VideoVersions(BaseModel):
     url: Optional[str] = None
     id: Optional[str] = None
 
+
 class ImageCandidate(BaseModel):
     width: Optional[int] = None
     height: Optional[int] = None
     url: Optional[str] = None
     scans_profile: Optional[str] = None
 
+
 class ImageVersions2(BaseModel):
     candidates: Optional[List[ImageCandidate]] = None
+
 
 class Post(BaseModel):
     pk: Optional[int] = None
@@ -226,6 +241,7 @@ class Post(BaseModel):
     media_overlay_info: Dict[str, Any] = None
     logging_info_token: Optional[str] = None
 
+
 class ThreadItem(BaseModel):
     post: Post = None
     line_type: str = None
@@ -234,7 +250,8 @@ class ThreadItem(BaseModel):
     should_show_replies_cta: bool = None
     reply_to_author: Optional[User] = None
     can_inline_expand_below: bool = None
-    _typename: Optional[str] = Field(None, alias="__typename")
+    typename: Optional[str] = Field(None, alias="__typename")
+
 
 class Thread(BaseModel):
     thread_items: List[ThreadItem] = None
@@ -242,12 +259,15 @@ class Thread(BaseModel):
     thread_type: str = None
     header: Optional[dict] = None
 
+
 class Threads(BaseModel):
     threads: List[Thread] = None
+
 
 class Replies(BaseModel):
     containing_thread: Optional[Thread] = None
     reply_threads: Optional[List[Thread]] = None
+
 
 class FundraiserTag(BaseModel):
     has_standalone_fundraiser: Optional[bool] = None
@@ -260,10 +280,12 @@ class MusicMetadata(BaseModel):
     original_sound_info: Optional[dict] = None
     pinned_media_ids: Optional[dict] = None
 
+
 class SharingFrictionInfo(BaseModel):
     should_have_sharing_friction: Optional[bool] = None
     bloks_app_url: Optional[str] = None
     sharing_friction_payload: Optional[str] = None
+
 
 class MashupInfo(BaseModel):
     mashups_allowed: Optional[bool] = None
@@ -278,6 +300,7 @@ class MashupInfo(BaseModel):
     is_creator_requesting_mashup: Optional[bool] = None
     has_nonmimicable_additional_audio: Optional[bool] = None
     is_pivot_page_available: Optional[bool] = None
+
 
 class MediaData(BaseModel):
     taken_at: Optional[int] = None
@@ -338,10 +361,12 @@ class MediaData(BaseModel):
     ig_media_sharing_disabled: Optional[bool] = None
     has_delayed_metadata: Optional[bool] = None
 
+
 class PostResponse(BaseModel):
     media: Optional[MediaData] = None
     upload_id: Optional[str] = None
     status: Optional[str] = None
+
 
 class CarouselMedia(BaseModel):
     media_type: Optional[int] = None
@@ -349,6 +374,7 @@ class CarouselMedia(BaseModel):
     original_width: Optional[int] = None
     original_height: Optional[int] = None
     pk: Optional[int] = None
+
 
 class Comment(BaseModel):
     pk: Optional[int] = None
@@ -363,6 +389,7 @@ class Comment(BaseModel):
     media_info: Optional[Post] = None
     user: Optional[User] = None
 
+
 class TimelineItem(BaseModel):
     thread_items: Optional[List[ThreadItem]] = None
     header: Optional[dict] = None
@@ -371,6 +398,7 @@ class TimelineItem(BaseModel):
     id: Optional[int] = None
     view_state_item_type: Optional[int] = None
     posts: List[Post] = []
+
 
 class TimelineData(BaseModel):
     num_results: Optional[int] = None
